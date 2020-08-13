@@ -6,23 +6,24 @@
   color: #fff;
 }
 
-.songRow:hover{
-    cursor: pointer;
-    background-color: #000;
-    opacity: .8;
+.songRow:hover {
+  cursor: pointer;
+  background-color: #000;
+  opacity: .8;
 }
 
-.songRow__info > h1 {
-    font-size: 16px;
+.songRow__info>h1 {
+  font-size: 16px;
 }
 
-.songRow__info > p{
-    font-size: 14px;
-    margin-top: 3px;
-    color: gray;
+.songRow__info>p {
+  font-size: 14px;
+  margin-top: 3px;
+  color: gray;
 }
 
-.songRow__album{
-    height: 40px;
-    width: 40px;
+.songRow__album {
+  height: 40px;
+  width: 40px;
+  padding-right: 10px;
 }
