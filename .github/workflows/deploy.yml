@@ -2,32 +2,24 @@ name: build
 
 on:
   push:
-    branches: 
-      - master
-
+    branches:
+    - master
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+    - master
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Setup Node.js for use with actions
-            uses: actions/checkout@v1
-            - name: Use Node.js 13.10
-            uses: actions/setup-node@v1.1.0
-            with:
-                version: '13.10'
-            - name: Install yarn and run unittest
-            run: |
-                yarn
-                yarn test
-            env:
-                CI: true
-            - name: Publish to Github Packages Registry
-            uses: elgohr/Publish-Docker-Github-Action@master
-            with:
-                name: memandip/spotify-clone/spotify-clone
-                registry: docker.pkg.github.com
-                # username: ${{ secrets.GITHUB_USERNAME }}
-                username: memandip
-                password: ${{ secrets.GITHUB_TOKEN }}
-                dockerfile: Dockerfile-prod
-                tags: latest      
+  build:
+    runs-on: ubuntu-latest
+    name: Build Job
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v1
+        with:
+          username: mandip810
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: mandip810/web-spotify-clone-reactjs
+          tags: v0.1
